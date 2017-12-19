@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo python /home/pi/src/robot.py
+sudo python /home/pi/mpi/robot.py
