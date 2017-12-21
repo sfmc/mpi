@@ -4,46 +4,26 @@
 <title>Millie Entertainer</title>
 <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico', v=123)}}">
 </head>
+<style>
+html *
+{
+   font-family: Arial !important;
+}
+</style>
 <body>
 	<center>
-		<h1>Millie Entertainer</h1>
+		<p style="font-size:30px">Millie Entertainer</p>
+		<ul id="events">
+			{% for event in Post.objects() %}
+				<h3>{{ event }}</h3>
+			{% endfor %}
+		</ul>
+		
 		<table>
 			<tr>
-				<td>
-					<img src="{{url_for('static', filename='favicon.ico')}}">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<button>Laser On</button>
-				</td>
-			</tr>
-			<tr>
-				<table>
-					<tr>
-						<td/>
-						<td>
-							<button>&#x25B2;</button>
-						</td>
-						<td/>
-					</tr>
-					<tr>
-						<td>
-							<button>&#x25C0;</button>
-						</td>
-						<td/>
-						<td>
-							<button>&#x25B6;</button>
-						</td>
-					</tr>
-					<tr>
-						<td/>
-						<td align="center">
-							<button>&#x25BC;</button>
-						</td>
-						<td/>
-					</tr>
-				</table>
+				<form method = "POST">
+					<input type="submit" name="submit" value="Do Something">
+				</form>
 			</tr>
 		</table>
 	</center>
