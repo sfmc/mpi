@@ -5,8 +5,7 @@ app = Flask(__name__)
 @app.route("/", methods = ['POST', 'GET'])
 def index():
 	events = ["1", "2", "abc"]
-	#data={'events':events}
-	data = []
+	data={'events':events}
 	if request.method == 'POST':
 		return "HELLO"
 	else:

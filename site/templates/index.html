@@ -14,7 +14,7 @@ html *
 	<center>
 		<p style="font-size:30px">Millie Entertainer</p>
 		<ul id="events">
-			{% for event in Post.objects() %}
+			{% for event in data.events %}
 				<h3>{{ event }}</h3>
 			{% endfor %}
 		</ul>
