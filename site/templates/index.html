@@ -9,15 +9,46 @@ html *
 {
    font-family: Arial !important;
 }
+#scheduled_lasings {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#scheduled_lasings td, #scheduled_lasings th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#scheduled_lasings tr:nth-child(even){background-color: #f2f2f2;}
+
+#scheduled_lasings tr:hover {background-color: #ddd;}
+
+#scheduled_lasings th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;	
+}
 </style>
 <body>
 	<center>
-		<p style="font-size:30px">Millie Entertainer</p>
-		<ul id="events">
-			{% for event in data.events %}
-				<h3>{{ event }}</h3>
-			{% endfor %}
-		</ul>
+		<p style="font-size:30px; font-variant: small-caps;">Millie Entertainer</p>
+		<table id="scheduled_lasings">
+			<tr>
+				<th>Days of Week</th>
+				<th>Start Time</th>
+				<th>Record Video</th>
+			</tr>
+		{% for scheduled_lasing in data.scheduled_lasings %}
+			<tr>
+				<td>{{ scheduled_lasing.DaysOfWeek }}</td>
+				<td>{{ scheduled_lasing.StartTime }}</td>
+				<td>{{ scheduled_lasing.RecordVideo }}</td>
+			</tr>
+		{% endfor %}
+		</table>
 		
 		<table>
 			<tr>
