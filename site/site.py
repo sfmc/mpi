@@ -13,7 +13,7 @@ def index():
 	data={'scheduled_lasings':scheduled_lasings}
 	if request.method == 'POST':
 		if request.form['submit'] == 'delete':
-			return "Delete"
+			return "Delete: " + request.form['scheduled_lasing_to_delete']
 		else:
 			return "HELLO"
 	else:
