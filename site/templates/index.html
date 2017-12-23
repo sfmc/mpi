@@ -51,9 +51,7 @@ html *
 				<td>
 					<form method="POST">
 						<input type="hidden" name="scheduled_lasing_to_delete" value="{{scheduled_lasing.id}}"/>
-						<input type="submit" name="submit" value="delete">
-							<img src="{{url_for('static', filename='trash_can.png', v=123)}}" width="16"/>
-						</input>
+						<input type="image" name="submit" value="delete" src="{{url_for('static', filename='trash_can.png', v=123)}}" width="16"/>
 					</form>
 				</td>
 			</tr>
