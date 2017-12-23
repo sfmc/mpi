@@ -12,7 +12,10 @@ def index():
 	scheduled_lasings.append(ScheduledLasing())
 	data={'scheduled_lasings':scheduled_lasings}
 	if request.method == 'POST':
-		return "HELLO"
+		if request.form['submit'] == 'delete':
+			return "Delete"
+		else:
+			return "HELLO"
 	else:
 		return render_template('index.html', data=data)
   
