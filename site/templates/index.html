@@ -47,7 +47,7 @@ html *
 			<tr>
 				<td>{{ scheduled_lasing.id }}</td>
 				<td>{{ scheduled_lasing.StartTime }}</td>
-				<td><input type="checkbox" checked={{"checked" if scheduled_lasing.RecordVideo else ""}}></input></td>
+				<td>{{"Yes" if scheduled_lasing.RecordVideo else "No"}}</td>
 				<td>
 					<form method="POST">
 						<input type="hidden" name="scheduled_lasing_to_delete" value="{{scheduled_lasing.id}}"/>
