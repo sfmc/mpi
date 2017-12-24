@@ -21,6 +21,7 @@ class ScheduledLasing():
 		self.id = uuid.uuid4()
 		self.DaysOfWeek = ['mon']
 		self.StartTime = datetime.time(14,0,0,0)
+		self.DisplayedStartTime = self.StartTime.strftime("%I:%M %p")
 		self.RecordVideo = False
 	
 	@staticmethod
