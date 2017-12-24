@@ -38,14 +38,14 @@ html *
 		<p style="font-size:30px; font-variant: small-caps;">Millie Entertainer</p>
 		<table id="scheduled_lasings">
 			<tr>
-				<th>Days of Week</th>
-				<th>Start Time</th>
-				<th>Record Video</th>
+				<th>Days</th>
+				<th>Time</th>
+				<th>Video</th>
 				<th></th>
 			</tr>
 		{% for scheduled_lasing in data.scheduled_lasings %}
 			<tr>
-				<td>{{ scheduled_lasing.id }}</td>
+				<td>{{ scheduled_lasing.DisplayedDaysOfWeek }}</td>
 				<td>{{ scheduled_lasing.DisplayedStartTime }}</td>
 				<td>{{"Yes" if scheduled_lasing.RecordVideo else "No"}}</td>
 				<td>
