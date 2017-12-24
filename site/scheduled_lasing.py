@@ -1,16 +1,4 @@
-import time, datetime, uuid, json, collections
-
-
-def custom_converter(o):
-	if isinstance(o, datetime.datetime):
-		return o.__str__()
-	elif isinstance(o, uuid.UUID):
-		return o.__str__()
-	elif isinstance(o, datetime.time):
-		return o.__str__()
-	else:
-		raise Exception("can't serialize type " + type(o).__name__)
-
+import time, datetime, uuid, collections
 
 class ScheduledLasing():
 	index = 0
@@ -44,10 +32,16 @@ class ScheduledLasing():
 	
 	@staticmethod
 	def to_file(filename, scheduled_lasings):
-		json_data = [s.__dict__ for s in scheduled_lasings]
-		with open(filename, 'w') as outfile:
-			json.dump({'scheduled_lasings':json_data}, outfile, default = custom_converter, indent=4)
+		lines = ""
+		for sl in scheduled_lasings:
+			days_data = ",".join(['1' if a[1] else '0' for a in sl.DaysOfWeek.items()])
+			lines += days_data
+			lines += "\n"
+		with open(filename, 'w') as fp:
+			fp.writelines(lines)
 	
 	@staticmethod
 	def from_file(filename):
+		
+		
 		pass
