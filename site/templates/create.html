@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Millie Entertainer</title>
+<link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico', v=123)}}">
+</head>
+<style>
+html *
+{
+   font-family: Arial !important;
+}
+</style>
+<body>
+	<center>
+		<p style="font-size:30px; font-variant: small-caps;">Millie Entertainer</p>
+		
+		<form method="POST">
+			<input type="checkbox" name="sunday" value="Sunday"/>Sunday<br>
+			<input type="checkbox" name="monday" value="Monday" checked="checked"/>Monday<br>
+			<input type="checkbox" name="tuesday" value="Tuesday" checked="checked"/>Tuesday<br>
+			<input type="checkbox" name="wednesday" value="Wednesday" checked="checked"/>Wednesday<br>
+			<input type="checkbox" name="thursday" value="Thursday" checked="checked"/>Thursday<br>
+			<input type="checkbox" name="friday" value="Friday" checked="checked"/>Friday<br>
+			<input type="checkbox" name="saturday" value="Saturday"/>Saturday<br><br>
+			<input type="checkbox" name="record_video" value="RecordVideo"/>Record Video<br>
+			<input type="submit" name="submit" value="Save" style="margin-top:30px; height:50px; width:150px">
+		</form>
+	</center>
+</body>
+</html>

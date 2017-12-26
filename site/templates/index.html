@@ -4,46 +4,65 @@
 <title>Millie Entertainer</title>
 <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico', v=123)}}">
 </head>
+<style>
+html *
+{
+   font-family: Arial !important;
+}
+#scheduled_lasings {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#scheduled_lasings td, #scheduled_lasings th {
+    border: 1px solid #ddd;
+	text-align: center;
+    padding: 8px;
+}
+
+#scheduled_lasings tr:nth-child(even){background-color: #f2f2f2;}
+
+#scheduled_lasings tr:hover {background-color: #ddd;}
+
+#scheduled_lasings th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;	
+}
+</style>
 <body>
 	<center>
-		<h1>Millie Entertainer</h1>
-		<table>
+		<p style="font-size:30px; font-variant: small-caps;">Millie Entertainer</p>
+		<table id="scheduled_lasings">
 			<tr>
+				<th>Days</th>
+				<th>Time</th>
+				<th>Video</th>
+				<th></th>
+			</tr>
+		{% for scheduled_lasing in data.scheduled_lasings %}
+			<tr>
+				<td>{{ scheduled_lasing.DisplayedDaysOfWeek }}</td>
+				<td>{{ scheduled_lasing.DisplayedStartTime }}</td>
+				<td>{{"Yes" if scheduled_lasing.RecordVideo else "No"}}</td>
 				<td>
-					<img src="{{url_for('static', filename='favicon.ico')}}">
+					<form method="POST">
+						<input type="hidden" name="scheduled_lasing_to_delete" value="{{scheduled_lasing.id}}"/>
+						<input type="image" name="submit" value="delete" src="{{url_for('static', filename='trash_can.png', v=123)}}" width="16"/>
+					</form>
 				</td>
 			</tr>
+		{% endfor %}
+		</table>
+		
+		<table style="margin-top:30px">
 			<tr>
-				<td>
-					<button>Laser On</button>
-				</td>
-			</tr>
-			<tr>
-				<table>
-					<tr>
-						<td/>
-						<td>
-							<button>&#x25B2;</button>
-						</td>
-						<td/>
-					</tr>
-					<tr>
-						<td>
-							<button>&#x25C0;</button>
-						</td>
-						<td/>
-						<td>
-							<button>&#x25B6;</button>
-						</td>
-					</tr>
-					<tr>
-						<td/>
-						<td align="center">
-							<button>&#x25BC;</button>
-						</td>
-						<td/>
-					</tr>
-				</table>
+				<form method="POST">
+					<input type="submit" name="submit" value="Create New" style="margin-top:30px; height:50px; width:150px">
+				</form>
 			</tr>
 		</table>
 	</center>
