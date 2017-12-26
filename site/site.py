@@ -13,8 +13,6 @@ def index():
 	if request.method == 'POST':
 		if request.form['submit'] == 'delete':
 			to_delete_id = uuid.UUID(request.form['scheduled_lasing_to_delete'])
-			#print "delete: " + str(type(request.form['scheduled_lasing_to_delete']))
-			#print type(scheduled_lasings[0].id)
 			to_delete = next((x for x in scheduled_lasings if x.id == to_delete_id), None)
 			if (to_delete != None):
 				print "deleting...."
