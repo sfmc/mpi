@@ -17,7 +17,6 @@ def index():
 			if (to_delete != None):
 				scheduled_lasings.remove(to_delete)
 				ScheduledLasing.to_file('data.txt', scheduled_lasings)
-			#return render_template('index.html', data=data, submission_successful=True)
 			return redirect(url_for('index'))
 		elif (request.form['submit'] == 'Create New'):
 			return render_template('create.html', data=data, submission_successful=True)
@@ -36,10 +35,8 @@ def index():
 			sl.update()
 			scheduled_lasings.append(sl)
 			ScheduledLasing.to_file('data.txt', scheduled_lasings)
-			#return render_template('index.html', data=data, submission_successful=True)
 			return redirect(url_for('index'))
 		else:
-			#return render_template('index.html', data=data, submission_successful=True)
 			return redirect(url_for('index'))
 	else:
 		return render_template('index.html', data=data)
