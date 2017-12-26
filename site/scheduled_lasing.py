@@ -62,9 +62,7 @@ class ScheduledLasing():
 				sl.DaysOfWeek['Saturday'] = True if (cols[6] == '1') else False
 				sl.StartTime = cols[7]
 				sl.StartTime = datetime.datetime.strptime(cols[7], '%H:%M:%S').time()
-				print cols[8]
 				sl.RecordVideo = True if (cols[8] == '1') else False
 				sl.update()
 				result.append(sl)
 		return result
-			
