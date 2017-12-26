@@ -38,7 +38,7 @@ class ScheduledLasing():
 		lines = ""
 		for sl in scheduled_lasings:
 			days_data = ",".join(['1' if a[1] else '0' for a in sl.DaysOfWeek.items()])
-			row_data = days_data + "," + sl.StartTime.__str__() + "," + ('1' if sl.RecordVideo else '0')
+			row_data = str(sl.id) + "," + days_data + "," + sl.StartTime.__str__() + "," + ('1' if sl.RecordVideo else '0')
 			lines += row_data
 			lines += "\n"
 		with open(filename, 'w') as fp:
@@ -53,16 +53,25 @@ class ScheduledLasing():
 			for line in lines:
 				cols = line.strip().split(',')
 				sl = ScheduledLasing()
-				sl.DaysOfWeek['Sunday'] = True if (cols[0] == '1') else False
-				sl.DaysOfWeek['Monday'] = True if (cols[1] == '1') else False
-				sl.DaysOfWeek['Tuesday'] = True if (cols[2] == '1') else False
-				sl.DaysOfWeek['Wednesday'] = True if (cols[3] == '1') else False
-				sl.DaysOfWeek['Thursday'] = True if (cols[4] == '1') else False
-				sl.DaysOfWeek['Friday'] = True if (cols[5] == '1') else False
-				sl.DaysOfWeek['Saturday'] = True if (cols[6] == '1') else False
-				sl.StartTime = cols[7]
-				sl.StartTime = datetime.datetime.strptime(cols[7], '%H:%M:%S').time()
-				sl.RecordVideo = True if (cols[8] == '1') else False
+				sl.id = uuid.UUID(cols[0])
+				sl.DaysOfWeek['Sunday'] = True if (cols[1] == '1') else False
+				sl.DaysOfWeek['Monday'] = True if (cols[2] == '1') else False
+				sl.DaysOfWeek['Tuesday'] = True if (cols[3] == '1') else False
+				sl.DaysOfWeek['Wednesday'] = True if (cols[4] == '1') else False
+				sl.DaysOfWeek['Thursday'] = True if (cols[5] == '1') else False
+				sl.DaysOfWeek['Friday'] = True if (cols[6] == '1') else False
+				sl.DaysOfWeek['Saturday'] = True if (cols[7] == '1') else False
+				sl.StartTime = datetime.datetime.strptime(cols[8], '%H:%M:%S').time()
+				sl.RecordVideo = True if (cols[9] == '1') else False
 				sl.update()
 				result.append(sl)
+		return result
+	
+	@staticmethod
+	def dummy_data():
+		result = []
+		result.append(ScheduledLasing())
+		result.append(ScheduledLasing())
+		result.append(ScheduledLasing())
+		result.append(ScheduledLasing())
 		return result
