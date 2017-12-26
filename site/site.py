@@ -5,10 +5,7 @@ app = Flask(__name__)
 
 @app.route("/", methods = ['POST', 'GET'])
 def index():
-	scheduled_lasings = []
-	scheduled_lasings.append(ScheduledLasing())
-	scheduled_lasings.append(ScheduledLasing())
-	scheduled_lasings.append(ScheduledLasing())
+	scheduled_lasings = ScheduledLasing.from_file('data.txt')
 	data={'scheduled_lasings':scheduled_lasings}
 	if request.method == 'POST':
 		if request.form['submit'] == 'delete':
