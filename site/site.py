@@ -1,5 +1,5 @@
 import uuid, time, datetime
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from scheduled_lasing import ScheduledLasing
 
 app = Flask(__name__)
@@ -17,9 +17,11 @@ def index():
 			if (to_delete != None):
 				scheduled_lasings.remove(to_delete)
 				ScheduledLasing.to_file('data.txt', scheduled_lasings)
-			return render_template('index.html', data=data)
+			#return render_template('index.html', data=data, submission_successful=True)
+			return redirect(url_for('index'))
 		elif (request.form['submit'] == 'Create New'):
-			return render_template('create.html', data=data)
+			return render_template('create.html', data=data, submission_successful=True)
+			#return redirect(url_for('create.html'))
 		elif (request.form['submit'] == 'Save'):
 			sl = ScheduledLasing()
 			sl.DaysOfWeek['Sunday'] = True if request.form.get('sunday') else False
@@ -34,9 +36,11 @@ def index():
 			sl.update()
 			scheduled_lasings.append(sl)
 			ScheduledLasing.to_file('data.txt', scheduled_lasings)
-			return render_template('index.html', data=data)
+			#return render_template('index.html', data=data, submission_successful=True)
+			return redirect(url_for('index'))
 		else:
-			return render_template('index.html', data=data)
+			#return render_template('index.html', data=data, submission_successful=True)
+			return redirect(url_for('index'))
 	else:
 		return render_template('index.html', data=data)
  
