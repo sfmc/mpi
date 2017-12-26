@@ -1,12 +1,15 @@
-import uuid, time, datetime
+import uuid, time, datetime, os.path
 from flask import Flask, render_template, request, redirect, url_for
 from scheduled_lasing import ScheduledLasing
 
 app = Flask(__name__)
+filename = 'data.txt'
 
 @app.route("/", methods = ['POST', 'GET'])
 def index():
-	scheduled_lasings = ScheduledLasing.from_file('data.txt')
+	scheduled_lasings = []
+	if os.path.isfile(filename):
+		scheduled_lasings = ScheduledLasing.from_file(filename)
 	#scheduled_lasings = ScheduledLasing.dummy_data()
 	#ScheduledLasing.to_file('data.txt', scheduled_lasings)
 	data={'scheduled_lasings':scheduled_lasings}
@@ -16,7 +19,7 @@ def index():
 			to_delete = next((x for x in scheduled_lasings if x.id == to_delete_id), None)
 			if (to_delete != None):
 				scheduled_lasings.remove(to_delete)
-				ScheduledLasing.to_file('data.txt', scheduled_lasings)
+				ScheduledLasing.to_file(filename, scheduled_lasings)
 			return redirect(url_for('index'))
 		elif (request.form['submit'] == 'Create New'):
 			return render_template('create.html', data=data, submission_successful=True)
@@ -34,7 +37,7 @@ def index():
 			sl.RecordVideo = True if request.form.get('record_video') else False
 			sl.update()
 			scheduled_lasings.append(sl)
-			ScheduledLasing.to_file('data.txt', scheduled_lasings)
+			ScheduledLasing.to_file(filename, scheduled_lasings)
 			return redirect(url_for('index'))
 		else:
 			return redirect(url_for('index'))
