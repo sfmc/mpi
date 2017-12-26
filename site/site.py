@@ -15,12 +15,13 @@ def index():
 			to_delete_id = uuid.UUID(request.form['scheduled_lasing_to_delete'])
 			to_delete = next((x for x in scheduled_lasings if x.id == to_delete_id), None)
 			if (to_delete != None):
-				print "deleting...."
 				scheduled_lasings.remove(to_delete)
 				ScheduledLasing.to_file('data.txt', scheduled_lasings)
 			return render_template('index.html', data=data)
+		elif (request.form['submit'] == 'Create New'):
+			return render_template('create.html', data=data)
 		else:
-			return "HELLO"
+			return render_template('index.html', data=data)
 	else:
 		return render_template('index.html', data=data)
  
