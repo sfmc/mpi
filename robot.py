@@ -6,6 +6,7 @@ import helpers.color_utilities
 from helpers.button_listener import ButtonListener
 from state_machine.startup_state import StartupState
 from state_machine.idle_state import IdleState
+from state_machine.entertain_state import EntertainState
 
 
 class Robot():
@@ -28,6 +29,7 @@ class Robot():
 		
 		initial_state = StartupState()
 		self.state = initial_state
+		#self.state = EntertainState(True)
 		time.sleep(2)
 		# Note: we may have moved on if user pressed a button
 		if (self.state == initial_state):
@@ -47,4 +49,3 @@ if __name__ == "__main__":
 	Robot()
 	#interfaces.servo_hat.initialize()
 	#interfaces.servo_hat.set_laser_angles(0,0)
-	
