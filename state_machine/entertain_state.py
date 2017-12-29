@@ -2,6 +2,7 @@
 import time, threading
 import helpers.color_utilities
 import helpers.laser_movements
+import interfaces.servo_hat
 import robot_state
 import idle_state
 import shutdown_state
@@ -18,10 +19,12 @@ class EntertainState(robot_state.RobotState):
 	
 	def run(self):
 		helpers.color_utilities.set_button_color(self.glow_color)
+		interfaces.servo_hat.laser_on()
 		while (self.stop_event.is_set() == False):
 			#helpers.color_utilities.glow(self.glow_color, 1)
 			helpers.laser_movements.draw_circle()
 			time.sleep(0.05)
+		interfaces.servo_hat.laser_off()
 		return
 
 		
